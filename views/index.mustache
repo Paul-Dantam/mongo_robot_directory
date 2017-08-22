@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Directory</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+
+    <nav class="navBar"><a href="/employed" class="employed">Employed</a> <a href="/unemployed" class="unemployed">Looking For Work</a></nav>
+
+
+    <section class="wrapper">
+
+
+
+        <div class="container">
+
+            <h1 class="indexTitle">Index</h1>
+
+            {{#users}}
+            <div class="returnItem">
+                <a href="/profile/{{_id}}"><img src="{{avatar}} " alt=" " class="avatar "></a>
+                <div class="name ">{{name}}</div>
+                {{#job}}
+                <div class="job ">{{job}}, {{company}}</div>
+                {{/job}}{{^job}}
+                <div class="nojob ">Available for hire</div>
+                {{/job}}
+            </div>
+            {{/users}}
+        </div>
+
+
+    </section>
+
+
+
+</body>
+
+</html>
