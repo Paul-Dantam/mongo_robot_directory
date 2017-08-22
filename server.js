@@ -82,12 +82,13 @@ app.get("/employed", (req, res) => {
 //   Robots.find({});
 // });
 
-app.get("/profile/:skill", (req, res) => {
-  Robots.findOne({ skills: ObjectId(req.params.skill) }, (err, foundRobot) => {
-    if (err) res.status(500).send(err);
-    if (!foundRobot) res.send("No User Found");
-    console.log({ data: foundRobot });
-    res.render("profile", { data: foundRobot });
+app.get("/skills/:skillName", (req, res) => {
+  Robots.find({ skills: req.params.skillName }).toArray((err, foundRobots) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    console.log({ users: foundRobots });
+    res.render("index", { users: foundRobots });
   });
 });
 
