@@ -78,9 +78,18 @@ app.get("/employed", (req, res) => {
   });
 });
 
-app.get("profile/:country");
+// app.get("/profile/:country", (req, res) => {
+//   Robots.find({});
+// });
 
-app.get("profile/:skills");
+app.get("/profile/:skill", (req, res) => {
+  Robots.findOne({ skills: ObjectId(req.params.skill) }, (err, foundRobot) => {
+    if (err) res.status(500).send(err);
+    if (!foundRobot) res.send("No User Found");
+    console.log({ data: foundRobot });
+    res.render("profile", { data: foundRobot });
+  });
+});
 
 app.listen(port, function() {
   console.log(`server is running on port ${port}!`);
