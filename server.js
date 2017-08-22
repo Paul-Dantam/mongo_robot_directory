@@ -23,15 +23,6 @@ MongoClient.connect(dbUrl, (err, db) => {
   Robots = db.collection("robots");
 });
 
-MongoClient.connect(dbUrl, (err, db) => {
-  if (err) {
-    return console.log("error connecting to the database", err);
-  }
-
-  DB = db;
-  Robots = db.collection("robots");
-});
-
 // This is how you can add from a js object file
 
 // app.get("/addrobots", (req, res) => {
@@ -65,7 +56,6 @@ app.get("/profile/:id", (req, res) => {
   Robots.findOne({ _id: ObjectId(req.params.id) }, (err, foundRobot) => {
     if (err) res.status(500).send(err);
     if (!foundRobot) res.send("No User Found");
-    console.log({ data: foundRobot });
     res.render("profile", { data: foundRobot });
   });
 });
@@ -79,14 +69,18 @@ app.get("/unemployed", (req, res) => {
 });
 
 app.get("/employed", (req, res) => {
-.find({ company: {$not: {$in: [null]}}}).toArray()
-
-  Robots.find({ job: "" }).toArray((err, foundRobots) => {
+  Robots.find({
+    job: { $not: { $in: [null] } }
+  }).toArray((err, foundRobots) => {
     err
       ? res.status(500).send(err)
       : res.render("index", { users: foundRobots });
   });
 });
+
+app.get("profile/:country");
+
+app.get("profile/:skills");
 
 app.listen(port, function() {
   console.log(`server is running on port ${port}!`);
