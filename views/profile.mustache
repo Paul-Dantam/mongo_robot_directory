@@ -20,7 +20,7 @@
                 </div>
                 <div class="userInfo">
                     <h1 class="indexName">{{name}}</h1>
-                    <div class="userLocation">{{#address.city}}{{address.city}}, {{/address.city}}{{address.country}} | {{#job}}{{job}}, {{company}}{{/job}}</div>{{^job}}
+                    <div class="userLocation">{{#address.city}}{{address.city}}, {{/address.city}}<a href="/country/{{address.country}}" class="countryLink">{{address.country}}</a>                        | {{#job}}{{job}}, {{company}}{{/job}}</div>{{^job}}
                     <div class="nojob">Available for hire</div>{{/job}}
                     <div class="contactInfo">{{email}} | {{phone}}</div>
                 </div>

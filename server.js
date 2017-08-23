@@ -92,6 +92,18 @@ app.get("/skills/:skillName", (req, res) => {
   });
 });
 
+app.get("/country/:countryName", (req, res) => {
+  Robots.find({
+    "address.country": req.params.countryName
+  }).toArray((err, foundRobots) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+
+    res.render("index", { users: foundRobots });
+  });
+});
+
 app.listen(port, function() {
   console.log(`server is running on port ${port}!`);
 });
