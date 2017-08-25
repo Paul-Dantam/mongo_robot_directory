@@ -11,7 +11,7 @@
 </head>
 
 <body>
-{{#data}}
+    {{#data}}
     <section class="profilewrapper">
         <div class="profilecontainer">
             <div class="profileTop">
@@ -20,7 +20,7 @@
                 </div>
                 <div class="userInfo">
                     <h1 class="indexName">{{name}}</h1>
-                    <div class="userLocation">{{#address.city}}{{address.city}}, {{/address.city}}{{address.country}} | {{#job}}{{job}}, {{company}}{{/job}}</div>{{^job}}
+                    <div class="userLocation">{{#address.city}}{{address.city}}, {{/address.city}}<a href="/profile/{{address.country}}" class="countryLink">{{address.country}}</a>| {{#job}}{{job}}, {{company}}{{/job}}</div>{{^job}}
                     <div class="nojob">Available for hire</div>{{/job}}
                     <div class="contactInfo">{{email}} | {{phone}}</div>
                 </div>
@@ -40,7 +40,7 @@
                     {{#university}}
                     <div class="ed">{{.}}</div>
                     {{/university}} {{^university}} {{/university}} {{#skills}}
-                    <div class="skills">{{.}}</div>{{/skills}}
+                    <div class="skills"><a href="/profile/{{.}}" class="skillLink">{{.}}</a></div>{{/skills}}
                 </div>
             </div>
         </div>

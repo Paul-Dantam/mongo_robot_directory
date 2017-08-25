@@ -1,5 +1,5 @@
 const express = require("express");
-const indexRoutes = express.Router();
+const empRoutes = express.Router();
 
 const mongo = require("mongodb");
 const ObjectId = mongo.ObjectID;
@@ -16,12 +16,22 @@ MongoClient.connect(dbUrl, (err, db) => {
   Robots = db.collection("robots");
 });
 
-indexRoutes.get("/", (req, res) => {
-  Robots.find({}).toArray((err, foundRobots) => {
+empRoutes.get("/unemployed", (req, res) => {
+  Robots.find({ job: null }).toArray((err, foundRobots) => {
     err
       ? res.status(500).send(err)
       : res.render("index", { users: foundRobots });
   });
 });
 
-module.exports = indexRoutes;
+empRoutes.get("/employed", (req, res) => {
+  Robots.find({
+    job: { $not: { $in: [null] } }
+  }).toArray((err, foundRobots) => {
+    err
+      ? res.status(500).send(err)
+      : res.render("index", { users: foundRobots });
+  });
+});
+
+module.exports = empRoutes;
