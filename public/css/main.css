@@ -1,9 +1,32 @@
+body {
+  margin: 0;
+}
+
 .wrapper {
   justify-content: center;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.navBar {
+  align-items: center;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  background-color: #656264;
+}
+
+.navItem {
+  padding: 1rem;
+  font-size: 1rem;
+  text-decoration: none;
+  color: ghostwhite;
+  transition: .4s;
+}
+
+.navItem:hover {
+  box-shadow: inset 1px 1px 5px;
 }
 
 .container {
